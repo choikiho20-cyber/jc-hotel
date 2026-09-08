@@ -153,6 +153,20 @@ p{margin:0 0 16px;color:rgba(221,228,225,.74)}
   color:rgba(255,255,255,.9); text-shadow:0 1px 12px rgba(0,0,0,.8);
 }
 .wide{position:relative;margin-top:46px;aspect-ratio:21/8;border:1px solid var(--line)}
+.artsshow{position:relative;margin:46px 0 0;aspect-ratio:21/9;overflow:hidden;border:1px solid var(--line)}
+.arts-imgs{position:absolute;inset:0}
+.artsshow img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.4s ease;
+}
+.artsshow img.on{opacity:1}
+.arts-dots{position:absolute;right:16px;bottom:14px;z-index:3;display:flex;gap:8px}
+.arts-dots button{
+  width:24px;height:2px;padding:12px 0;background:rgba(255,255,255,.4);
+  background-clip:content-box;box-sizing:content-box;transition:background .4s;
+}
+.arts-dots button[aria-current="true"]{background:var(--brass);background-clip:content-box}
+@media(max-width:700px){.artsshow{aspect-ratio:4/3}}
 @media(max-width:700px){.wide{aspect-ratio:4/3}}
 
 /* ── 네비 ───────────────────────────────────── */
@@ -801,10 +815,24 @@ footer .brand{margin-bottom:20px}
       <p class="lead" style="max-width:54ch">호텔 문 앞에서부터 걸어서 재봤습니다.</p>
     </div>
 
-    <!-- [교체] 제천 예술의전당 실사진 -->
-    <figure class="wide ph rise" data-label="임시 이미지" style="margin:0">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1722321974501-059dff03e970?auto=format&fit=crop&w=1600&q=80" alt="객석과 무대가 있는 공연장 내부">
+    <figure class="artsshow rise" id="artsshow">
+      <div class="arts-imgs">
+        <img src="images/arts/arts-1-plaza.jpg" alt="잔디광장에서 본 제천 예술의전당 외관" class="on">
+        <img loading="lazy" src="images/arts/arts-2-front.jpg" alt="붉은 아치가 있는 제천 예술의전당 정면">
+        <img loading="lazy" src="images/arts/arts-3-aerial.jpg" alt="제천 시내 한가운데 자리한 예술의전당 항공 사진">
+        <img loading="lazy" src="images/arts/arts-4-seats.jpg" alt="무대에서 바라본 대공연장 객석">
+        <img loading="lazy" src="images/arts/arts-5-stage.jpg" alt="객석에서 바라본 대공연장 무대">
+        <img loading="lazy" src="images/arts/arts-6-sign.jpg" alt="동명광장 사인과 제천 예술의전당">
+      </div>
       <figcaption class="figcap">호텔에서 걸어서 1분, 제천 예술의전당</figcaption>
+      <div class="arts-dots" id="artsdots">
+        <button aria-label="1번째 사진" aria-current="true"></button>
+        <button aria-label="2번째 사진"></button>
+        <button aria-label="3번째 사진"></button>
+        <button aria-label="4번째 사진"></button>
+        <button aria-label="5번째 사진"></button>
+        <button aria-label="6번째 사진"></button>
+      </div>
     </figure>
 
     <ol class="walk rise">
@@ -1023,6 +1051,23 @@ if (canPlay()) play();
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) clearInterval(timer);
   else if (canPlay()) play();
+});
+
+// 예술의전당 — 디졸브 전환
+const artsImgs = [...document.querySelectorAll('#artsshow img')],
+      artsDots = [...document.getElementById('artsdots').children];
+let ai = 0, artsTimer;
+const artsGo = n => {
+  ai = (n + artsImgs.length) % artsImgs.length;
+  artsImgs.forEach((im, x) => im.classList.toggle('on', x === ai));
+  artsDots.forEach((d, x) => d.setAttribute('aria-current', x === ai));
+};
+const artsPlay = () => { clearInterval(artsTimer); artsTimer = setInterval(() => artsGo(ai + 1), 5000); };
+artsDots.forEach((d, x) => d.addEventListener('click', () => { artsGo(x); artsPlay(); }));
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) artsPlay();
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) clearInterval(artsTimer);
+  else if (!matchMedia('(prefers-reduced-motion: reduce)').matches) artsPlay();
 });
 
 // 객실 영상 — 누를 때 불러온다 (자동 재생하지 않아 데이터를 아낀다)
