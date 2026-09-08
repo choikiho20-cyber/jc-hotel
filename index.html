@@ -489,6 +489,13 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
 .places{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(12px,3vw,22px);margin-top:46px}
 .place .ph{aspect-ratio:3/4}
 .place h3{margin:18px 0 4px;font-size:19px}
+.outlinks{
+  margin:clamp(34px,4vw,52px) 0 0; padding-top:24px;
+  border-top:1px solid rgba(255,255,255,.09);
+  font-size:14.5px; line-height:1.85; color:rgba(221,228,225,.6); max-width:62ch;
+}
+.outlinks a{color:var(--brass);border-bottom:1px solid var(--line);padding-bottom:1px}
+.outlinks a:hover{border-bottom-color:var(--brass)}
 .place span{font-size:13px;color:rgba(221,228,225,.55)}
 
 /* ── 푸터 ───────────────────────────────────── */
@@ -962,6 +969,13 @@ footer .brand{margin-bottom:20px}
       <div class="place"><div class="ph"><img loading="lazy" src="images/oksunbong.jpg" alt="단풍 든 청풍호를 건너는 옥순봉 출렁다리"></div><h3>옥순봉 출렁다리</h3><span>청풍호 위를 건너는 다리</span></div>
       <div class="place"><div class="ph"><img loading="lazy" src="images/woraksan.jpg" alt="월악산 능선에서 내려다본 청풍호"></div><h3>월악산</h3><span>능선에서 내려다보는 청풍호</span></div>
     </div>
+
+    <p class="outlinks rise">
+      의림지 · 월악산 · 옥순봉은 제천 10경에 드는 곳입니다.
+      더 자세한 여행 정보는
+      <a href="https://tour.jecheon.go.kr" target="_blank" rel="noopener">제천 문화관광</a>과
+      <a href="https://www.jimff.org/kor/default.asp" target="_blank" rel="noopener">제천국제음악영화제</a>에서 보실 수 있습니다.
+    </p>
   </div>
 </section>
 
