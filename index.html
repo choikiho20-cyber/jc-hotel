@@ -160,7 +160,14 @@ p{margin:0 0 16px;color:rgba(221,228,225,.74)}
   opacity:0;transition:opacity 1.4s ease;
 }
 .artsshow img.on{opacity:1}
-.arts-dots{position:absolute;right:16px;bottom:14px;z-index:3;display:flex;gap:8px}
+.arts-dots{position:absolute;right:16px;bottom:12px;z-index:3;display:flex;gap:8px}
+.artsshow .figcap{bottom:44px}
+.credit{
+  position:absolute; left:14px; z-index:3; margin:0;
+  font-size:10.5px; letter-spacing:.02em; color:rgba(255,255,255,.5);
+  text-shadow:0 1px 6px rgba(0,0,0,.8);
+}
+.artsshow .credit{bottom:16px}
 .arts-dots button{
   width:24px;height:2px;padding:12px 0;background:rgba(255,255,255,.4);
   background-clip:content-box;box-sizing:content-box;transition:background .4s;
@@ -361,12 +368,6 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
 .rm-ko{font-size:14px;color:rgba(221,228,225,.62);margin:0 0 16px}
 .rm-people{font-size:13px;color:var(--brass);margin:0 0 4px;letter-spacing:.02em}
 .rm-spec{font-size:13px;color:rgba(221,228,225,.5);margin:0 0 20px;line-height:1.6}
-.rm-bf{
-  display:inline-block;align-self:flex-start;margin:0 0 14px;
-  font-size:12px;letter-spacing:.02em;padding:4px 10px;
-  border:1px solid rgba(255,255,255,.16);color:rgba(221,228,225,.5);
-}
-.rm-bf.on{border-color:var(--brass);color:var(--brass)}
 .rm-price{font-family:var(--lat);font-size:19px;letter-spacing:.06em;color:#fff;margin:auto 0 16px}
 .rm-price em{font-family:var(--body);font-style:normal;font-size:13px;color:rgba(221,228,225,.55);margin-left:3px}
 .rm-book{
@@ -653,7 +654,6 @@ footer .brand{margin-bottom:20px}
           <p class="rm-ko">스탠다드 일반실</p>
           <p class="rm-people">기준 2인 · 최대 2인</p>
           <p class="rm-spec">침실 1 · 침대 1 · 욕실 1</p>
-          <span class="rm-bf">조식 별도</span>
           <p class="rm-price">80,000 ~ 120,000<em>원</em></p>
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681" target="_blank" rel="noopener">예약</a>
         </article>
@@ -671,7 +671,6 @@ footer .brand{margin-bottom:20px}
           <p class="rm-ko">프리미엄 일반실</p>
           <p class="rm-people">기준 2인 · 최대 2인</p>
           <p class="rm-spec">침실 1 · 침대 1 · 욕실 1</p>
-          <span class="rm-bf">조식 별도</span>
           <p class="rm-price">100,000 ~ 140,000<em>원</em></p>
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681" target="_blank" rel="noopener">예약</a>
         </article>
@@ -680,7 +679,6 @@ footer .brand{margin-bottom:20px}
           <p class="rm-ko">트윈 일반실</p>
           <p class="rm-people">기준 2인 · 최대 2인</p>
           <p class="rm-spec">침실 1 · 침대 2 · 욕실 1</p>
-          <span class="rm-bf">조식 별도</span>
           <p class="rm-price">110,000 ~ 150,000<em>원</em></p>
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681" target="_blank" rel="noopener">예약</a>
         </article>
@@ -698,7 +696,6 @@ footer .brand{margin-bottom:20px}
           <p class="rm-ko">준특실</p>
           <p class="rm-people">기준 2인 · 최대 3인</p>
           <p class="rm-spec">침실 1 · 침대 1 · 소파베드 1 · 욕실 1</p>
-          <span class="rm-bf on">조식 2인 무료</span>
           <p class="rm-price">120,000 ~ 160,000<em>원</em></p>
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681" target="_blank" rel="noopener">예약</a>
         </article>
@@ -707,7 +704,6 @@ footer .brand{margin-bottom:20px}
           <p class="rm-ko">PC룸</p>
           <p class="rm-people">기준 2인 · 최대 2인</p>
           <p class="rm-spec">침실 1 · 침대 1 · 욕실 1</p>
-          <span class="rm-bf on">조식 2인 무료</span>
           <p class="rm-price">120,000 ~ 160,000<em>원</em></p>
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681" target="_blank" rel="noopener">예약</a>
         </article>
@@ -716,7 +712,6 @@ footer .brand{margin-bottom:20px}
           <p class="rm-ko">준특 트윈룸</p>
           <p class="rm-people">기준 2인 · 최대 3인</p>
           <p class="rm-spec">침실 1 · 침대 2 · 욕실 1</p>
-          <span class="rm-bf on">조식 2인 무료</span>
           <p class="rm-price">160,000 ~ 210,000<em>원</em></p>
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681" target="_blank" rel="noopener">예약</a>
         </article>
@@ -725,7 +720,6 @@ footer .brand{margin-bottom:20px}
           <p class="rm-ko">한실 4인</p>
           <p class="rm-people">기준 4인 · 최대 5인</p>
           <p class="rm-spec">침실 1 · 이불 4 · 욕실 1</p>
-          <span class="rm-bf">조식 별도</span>
           <p class="rm-price">160,000 ~ 200,000<em>원</em></p>
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681" target="_blank" rel="noopener">예약</a>
         </article>
@@ -743,7 +737,6 @@ footer .brand{margin-bottom:20px}
           <p class="rm-ko">특실 트윈</p>
           <p class="rm-people">기준 2인 · 최대 3인</p>
           <p class="rm-spec">침실 1 · 침대 2 · 욕실 1</p>
-          <span class="rm-bf on">조식 2인 무료</span>
           <p class="rm-price">200,000 ~ 240,000<em>원</em></p>
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681" target="_blank" rel="noopener">예약</a>
         </article>
@@ -752,7 +745,6 @@ footer .brand{margin-bottom:20px}
           <p class="rm-ko">한실 8인</p>
           <p class="rm-people">기준 8인 · 최대 10인</p>
           <p class="rm-spec">침실 1 · 이불 8 · 욕실 2</p>
-          <span class="rm-bf on">조식 2인 무료</span>
           <p class="rm-price">280,000 ~ 380,000<em>원</em></p>
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681" target="_blank" rel="noopener">예약</a>
         </article>
@@ -825,6 +817,7 @@ footer .brand{margin-bottom:20px}
         <img loading="lazy" src="images/arts/arts-6-sign.jpg" alt="동명광장 사인과 제천 예술의전당">
       </div>
       <figcaption class="figcap">호텔에서 걸어서 1분, 제천 예술의전당</figcaption>
+      <p class="credit">사진 제공 · 제천예술의전당</p>
       <div class="arts-dots" id="artsdots">
         <button aria-label="1번째 사진" aria-current="true"></button>
         <button aria-label="2번째 사진"></button>
@@ -911,12 +904,8 @@ footer .brand{margin-bottom:20px}
     </div>
 
     <div class="bffree rise">
-      <p class="bffree-t">대부분의 객실은 <b>2인 조식이 무료</b>입니다.</p>
-      <ul>
-        <li><i>포함</i>디럭스 · 디럭스 2PC · 디럭스 트윈 · 이그제큐티브 트윈 · 이그제큐티브 패밀리</li>
-        <li><i>미포함</i>스탠다드 · 슈페리어 · 슈페리어 트윈 · 디럭스 패밀리(한실 8인)</li>
-      </ul>
-      <p class="bffree-n">미포함 객실이거나 인원을 추가하실 때는 1인 15,000원, 현장에서 결제하십니다.</p>
+      <p class="bffree-t">조식은 <b>별도 요금</b>입니다.</p>
+      <p class="bffree-n">1인 15,000원. 예약하실 때 함께 신청하시거나 현장에서 결제하십니다. 객실 요금에 조식을 포함해 안내하는 경우도 있으니, 예약 전에 확인해 주세요.</p>
     </div>
   </div>
 </section>
@@ -969,8 +958,8 @@ footer .brand{margin-bottom:20px}
     <div class="places rise">
       <div class="place"><div class="ph" data-label="임시"><img loading="lazy" src="images/cheongpungho.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1689692992143-5826c267e5c7?auto=format&fit=crop&w=800&q=80'" alt="유람선이 지나는 청풍호"></div><h3>청풍호</h3><span>케이블카와 관광 모노레일</span></div>
       <div class="place"><div class="ph" data-label="임시"><img loading="lazy" src="images/uirimji.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1603852452515-2dc92bd9c6f1?auto=format&fit=crop&w=800&q=80'" alt="의림지 용추폭포와 유리 전망대"></div><h3>의림지</h3><span>삼한시대부터의 저수지</span></div>
-      <div class="place"><div class="ph" data-label="임시"><img loading="lazy" src="https://images.unsplash.com/photo-1673265771901-5ddf13bde2d0?auto=format&fit=crop&w=800&q=80" alt="청풍호 옥순봉 출렁다리"></div><h3>옥순봉 출렁다리</h3><span>청풍호 위를 건너는 다리</span></div>
-      <div class="place"><div class="ph" data-label="임시"><img loading="lazy" src="https://images.unsplash.com/photo-1716328435733-093551d38a1b?auto=format&fit=crop&w=800&q=80" alt="가을 산의 능선"></div><h3>월악산</h3><span>계절이 가장 선명한 산</span></div>
+      <div class="place"><div class="ph"><img loading="lazy" src="images/oksunbong.jpg" alt="단풍 든 청풍호를 건너는 옥순봉 출렁다리"></div><h3>옥순봉 출렁다리</h3><span>청풍호 위를 건너는 다리</span></div>
+      <div class="place"><div class="ph"><img loading="lazy" src="images/woraksan.jpg" alt="월악산 능선에서 내려다본 청풍호"></div><h3>월악산</h3><span>능선에서 내려다보는 청풍호</span></div>
     </div>
   </div>
 </section>
