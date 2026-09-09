@@ -512,8 +512,12 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
   font-size:13px;font-weight:500;color:#fff;
 }
 @media(max-width:760px){.facshots{grid-template-columns:repeat(2,1fr)}}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:1px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.09);margin-top:44px}
-.cell{background:var(--ink);padding:clamp(20px,4.5vw,34px) clamp(16px,3.6vw,28px);transition:background .3s}
+/* 시설 카드 9장 = 3x3. auto-fit은 화면폭에 따라 4칸이 되어 빈 칸이 생기므로 칸 수를 고정한다 */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:44px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+/* 테두리를 칸 자신이 그린다 — 컨테이너 배경을 쓰면 카드 없는 칸이 회색 상자로 남는다 */
+.cell{background:var(--ink);box-shadow:0 0 0 1px rgba(255,255,255,.09);padding:clamp(20px,4.5vw,34px) clamp(16px,3.6vw,28px);transition:background .3s}
 .cell:hover{background:var(--deep)}
 .cell b{display:block;font-family:var(--disp);font-size:clamp(17px,4vw,19px);font-weight:700;color:#fff;margin-bottom:8px}
 .cell span{display:block;font-size:14px;color:rgba(221,228,225,.62);line-height:1.7}
