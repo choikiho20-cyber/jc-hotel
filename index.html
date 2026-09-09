@@ -569,11 +569,18 @@ footer .brand{margin-bottom:20px}
 .fcol p a{display:inline-block;padding:6px 0}
 .maps{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .maps a{
-  display:inline-block; font-size:13px; letter-spacing:.02em;
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:13px; letter-spacing:.02em;
   padding:10px 14px; border:1px solid var(--line); color:var(--brass);
   transition:background .25s, color .25s;
 }
 .maps a:hover{background:var(--brass);color:var(--ink)}
+/* 각 지도 서비스의 대표색으로 구분 (로고 이미지가 아니라 색만 씁니다) */
+.maps svg{width:14px;height:14px;flex:none;transition:fill .25s}
+.maps .m-naver svg{fill:#03C75A}
+.maps .m-kakao svg{fill:#FFE300}
+.maps .m-google svg{fill:#4285F4}
+.maps a:hover svg{fill:var(--ink)}
 .copy{max-width:1240px;margin:56px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.07);font-size:12px;color:rgba(221,228,225,.4)}
 @media(max-width:860px){.fgrid{grid-template-columns:1fr;gap:34px}}
 
@@ -1223,9 +1230,9 @@ footer .brand{margin-bottom:20px}
       <p>중앙고속도로 제천IC 10분</p>
       <p>호텔 주차장 (발렛 없음)</p>
       <div class="maps">
-        <a href="https://map.naver.com/p/search/%EC%A0%9C%EC%B2%9C%20JC%ED%98%B8%ED%85%94" target="_blank" rel="noopener">네이버 지도</a>
-        <a href="https://map.kakao.com/?q=%EC%A0%9C%EC%B2%9C%20JC%ED%98%B8%ED%85%94" target="_blank" rel="noopener">카카오맵</a>
-        <a href="https://www.google.com/maps/search/?api=1&query=%EC%A0%9C%EC%B2%9C%20JC%ED%98%B8%ED%85%94" target="_blank" rel="noopener">구글 지도</a>
+        <a class="m-naver" href="https://map.naver.com/p/search/%EC%A0%9C%EC%B2%9C%20JC%ED%98%B8%ED%85%94" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>네이버 지도</a>
+        <a class="m-kakao" href="https://map.kakao.com/?q=%EC%A0%9C%EC%B2%9C%20JC%ED%98%B8%ED%85%94" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>카카오맵</a>
+        <a class="m-google" href="https://www.google.com/maps/search/?api=1&query=%EC%A0%9C%EC%B2%9C%20JC%ED%98%B8%ED%85%94" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>구글 지도</a>
       </div>
     </div>
   </div>
