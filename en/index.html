@@ -380,7 +380,8 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
 .grade-head{display:flex;align-items:baseline;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .grade-en{font-family:var(--lat);font-size:clamp(20px,2.2vw,27px);letter-spacing:.16em;color:var(--brass)}
 .grade-ko{font-size:13px;letter-spacing:.1em;color:rgba(221,228,225,.5)}
-.rmgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:1px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.09);border-top:0}
+/* auto-fill + 최대폭: 등급에 카드가 하나뿐이어도 혼자 넓어지지 않는다 */
+.rmgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,340px));gap:1px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.09);border-top:0;justify-content:start}
 .rm{background:var(--ink);padding:clamp(20px,5vw,26px) clamp(18px,4.5vw,24px) 22px;display:flex;flex-direction:column;transition:background .3s}
 .rm:hover{background:var(--deep)}
 .rm-photos{
@@ -432,7 +433,7 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
 }
 .rmvid figcaption b{color:#fff;font-weight:600;margin-right:5px}
 @media(max-width:860px){.rmvids-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.rmgrid{grid-template-columns:1fr}}
+@media(max-width:560px){.rmgrid{grid-template-columns:minmax(0,1fr)}}
 
 .spec{background:var(--deep)}
 .walk{list-style:none;margin:48px 0 0;padding:0;border-left:1px solid var(--line)}
