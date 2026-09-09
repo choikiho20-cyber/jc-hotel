@@ -383,6 +383,14 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
 .rmgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:1px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.09);border-top:0}
 .rm{background:var(--ink);padding:clamp(20px,5vw,26px) clamp(18px,4.5vw,24px) 22px;display:flex;flex-direction:column;transition:background .3s}
 .rm:hover{background:var(--deep)}
+.rm-photos{
+  display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:2px;
+  aspect-ratio:4/3;margin:-26px -24px 20px;background:var(--deep);
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.rm-photos::-webkit-scrollbar{display:none}
+.rm-photos img{flex:0 0 93%;width:93%;height:100%;object-fit:cover;scroll-snap-align:start;display:block}
+@media(max-width:560px){.rm-photos{margin:-20px -18px 18px}}
 .rm h3{font-family:var(--lat);font-size:20px;letter-spacing:.08em;color:#fff;margin:0 0 4px;line-height:1.3}
 .rm-badge{display:inline-block;margin-left:8px;font-family:var(--body);font-size:11px;letter-spacing:.08em;padding:3px 8px;border:1px solid var(--line);color:var(--brass);vertical-align:middle}
 .rm-ko{font-size:14px;color:rgba(221,228,225,.62);margin:0 0 16px}
@@ -688,6 +696,7 @@ footer .brand{margin-bottom:20px}
       </div>
       <div class="rmgrid">
         <article class="rm">
+          <div class="rm-photos"><img loading="lazy" src="../images/rooms/standard-1.jpg" alt="Standard room bed"><img loading="lazy" src="../images/rooms/standard-2.jpg" alt="Standard room overview"><img loading="lazy" src="../images/rooms/standard-3.jpg" alt="Standard room table"></div>
           <h3>Standard</h3>
           <p class="rm-ko">Standard Room</p>
           <p class="rm-people">Base 2 · Max 2</p>
@@ -705,6 +714,7 @@ footer .brand{margin-bottom:20px}
       </div>
       <div class="rmgrid">
         <article class="rm">
+          <div class="rm-photos"><img loading="lazy" src="../images/rooms/superior-1.jpg" alt="Superior room overview"><img loading="lazy" src="../images/rooms/superior-2.jpg" alt="Superior room TV and bed"><img loading="lazy" src="../images/rooms/superior-3.jpg" alt="Superior room bathroom"></div>
           <h3>Superior</h3>
           <p class="rm-ko">Premium Room</p>
           <p class="rm-people">Base 2 · Max 2</p>
@@ -713,6 +723,7 @@ footer .brand{margin-bottom:20px}
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681/items/6726765" target="_blank" rel="noopener">Book</a>
         </article>
         <article class="rm">
+          <div class="rm-photos"><img loading="lazy" src="../images/rooms/superior-twin-1.jpg" alt="Twin room overview"><img loading="lazy" src="../images/rooms/superior-twin-2.jpg" alt="Twin room TV and beds"><img loading="lazy" src="../images/rooms/superior-twin-3.jpg" alt="Twin room bathroom"></div>
           <h3>Superior Twin</h3>
           <p class="rm-ko">Twin Room</p>
           <p class="rm-people">Base 2 · Max 2</p>
@@ -730,6 +741,7 @@ footer .brand{margin-bottom:20px}
       </div>
       <div class="rmgrid">
         <article class="rm">
+          <div class="rm-photos"><img loading="lazy" src="../images/rooms/deluxe-1.jpg" alt="Semi-suite overview"><img loading="lazy" src="../images/rooms/deluxe-2.jpg" alt="Semi-suite dual monitor desk"><img loading="lazy" src="../images/rooms/deluxe-3.jpg" alt="Semi-suite bathroom"></div>
           <h3>Deluxe</h3>
           <p class="rm-ko">Semi-Suite</p>
           <p class="rm-people">Base 2 · Max 3</p>
@@ -738,6 +750,7 @@ footer .brand{margin-bottom:20px}
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681/items/6726831" target="_blank" rel="noopener">Book</a>
         </article>
         <article class="rm">
+          <div class="rm-photos"><img loading="lazy" src="../images/rooms/deluxe-2pc-1.jpg" alt="Gaming PC room overview"><img loading="lazy" src="../images/rooms/deluxe-2pc-2.jpg" alt="Gaming PC room bed and desk"><img loading="lazy" src="../images/rooms/deluxe-2pc-3.jpg" alt="Gaming PC room dual monitors"></div>
           <h3>Deluxe 2PC<span class="rm-badge">2 PCs</span></h3>
           <p class="rm-ko">Gaming PC Room</p>
           <p class="rm-people">Base 2 · Max 2</p>
@@ -746,6 +759,7 @@ footer .brand{margin-bottom:20px}
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681/items/6726846" target="_blank" rel="noopener">Book</a>
         </article>
         <article class="rm">
+          <div class="rm-photos"><img loading="lazy" src="../images/rooms/deluxe-twin-1.jpg" alt="Semi-suite twin overview"><img loading="lazy" src="../images/rooms/deluxe-twin-2.jpg" alt="Semi-suite twin TV and beds"><img loading="lazy" src="../images/rooms/deluxe-twin-3.jpg" alt="Semi-suite twin beds"></div>
           <h3>Deluxe Twin</h3>
           <p class="rm-ko">Semi-Suite Twin</p>
           <p class="rm-people">Base 2 · Max 3</p>
@@ -754,6 +768,7 @@ footer .brand{margin-bottom:20px}
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681/items/6726859" target="_blank" rel="noopener">Book</a>
         </article>
         <article class="rm">
+          <div class="rm-photos"><img loading="lazy" src="../images/rooms/deluxe-family-1.jpg" alt="Ondol room for 4 overview"><img loading="lazy" src="../images/rooms/deluxe-family-2.jpg" alt="Ondol room for 4"><img loading="lazy" src="../images/rooms/deluxe-family-3.jpg" alt="Ondol room for 4 bathroom"></div>
           <h3>Deluxe Family<span class="rm-badge">Ondol</span></h3>
           <p class="rm-ko">Ondol Room for 4</p>
           <p class="rm-people">Base 4 · Max 5</p>
@@ -771,6 +786,7 @@ footer .brand{margin-bottom:20px}
       </div>
       <div class="rmgrid">
         <article class="rm">
+          <div class="rm-photos"><img loading="lazy" src="../images/rooms/executive-twin-1.jpg" alt="Suite twin overview"><img loading="lazy" src="../images/rooms/executive-twin-2.jpg" alt="Suite twin massage chair"><img loading="lazy" src="../images/rooms/executive-twin-3.jpg" alt="Suite twin window seating"></div>
           <h3>Executive Twin</h3>
           <p class="rm-ko">Suite Twin</p>
           <p class="rm-people">Base 2 · Max 3</p>
@@ -779,6 +795,7 @@ footer .brand{margin-bottom:20px}
           <a class="rm-book" href="https://booking.naver.com/booking/3/bizes/1224681/items/6726915" target="_blank" rel="noopener">Book</a>
         </article>
         <article class="rm">
+          <div class="rm-photos"><img loading="lazy" src="../images/rooms/executive-family-1.jpg" alt="Ondol room for 8 overview"><img loading="lazy" src="../images/rooms/executive-family-2.jpg" alt="Ondol room for 8"><img loading="lazy" src="../images/rooms/executive-family-3.jpg" alt="Ondol room for 8 bathroom"></div>
           <h3>Executive Family<span class="rm-badge">Ondol</span></h3>
           <p class="rm-ko">Ondol Room for 8</p>
           <p class="rm-people">Base 8 · Max 10</p>
