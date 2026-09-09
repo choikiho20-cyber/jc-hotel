@@ -76,6 +76,12 @@ section[hidden]{display:none}
 .posts .acts button{padding:11px 13px;min-height:44px;border:1px solid var(--line);font-size:12.5px;color:rgba(221,228,225,.75)}
 .posts .acts button.del{border-color:rgba(224,104,90,.5);color:var(--bad)}
 
+/* 바로가기 */
+.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:12px}
+.links a{display:flex;align-items:center;min-height:52px;padding:12px 15px;border:1px solid var(--line);color:rgba(221,228,225,.85);font-size:14px;text-decoration:none}
+.links a:hover{background:var(--brass);border-color:var(--brass);color:var(--ink);font-weight:600}
+.links a::after{content:'↗';margin-left:auto;opacity:.45;font-size:12px}
+
 /* 상태 */
 #log{position:fixed;left:0;right:0;bottom:0;padding:13px 16px;font-size:13.5px;
   background:var(--deep);border-top:1px solid var(--line);z-index:30;display:none}
@@ -116,6 +122,7 @@ code{background:rgba(0,0,0,.3);padding:2px 5px;font-size:12.5px}
   <div class="tabs">
     <button data-tab="pics" class="on">사진 교체</button>
     <button data-tab="blog">블로그</button>
+    <button data-tab="links">바로가기</button>
   </div>
 
   <!-- 사진 -->
@@ -156,6 +163,59 @@ code{background:rgba(0,0,0,.3);padding:2px 5px;font-size:12.5px}
       <h2>올라간 글</h2>
       <p class="hint" id="postCount"></p>
       <ul class="posts" id="posts"></ul>
+    </div>
+  </section>
+
+  <!-- 바로가기 -->
+  <section id="tab-links" hidden>
+    <div class="card">
+      <h2>사이트</h2>
+      <div class="links">
+        <a href="index.html" target="_blank">홈페이지</a>
+        <a href="en/index.html" target="_blank">영문 홈페이지</a>
+        <a href="blog.html" target="_blank">블로그</a>
+        <a href="gallery.html" target="_blank">사진</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>우리 채널</h2>
+      <p class="hint">손님이 실제로 예약하고 후기를 남기는 곳입니다.</p>
+      <div class="links">
+        <a href="https://partner.booking.naver.com/" target="_blank" rel="noopener">네이버 예약 관리</a>
+        <a href="https://new.smartplace.naver.com/" target="_blank" rel="noopener">네이버 스마트플레이스</a>
+        <a href="https://business.google.com/" target="_blank" rel="noopener">구글 비즈니스 프로필</a>
+        <a href="https://search.google.com/local/writereview?placeid=ChIJCQ3Pgt-RYzUR-ewmVvSUYPc" target="_blank" rel="noopener">구글 후기 남기기 링크</a>
+      </div>
+      <p class="warn">
+        구글 후기 남기기 링크는 손님께 문자로 보내시는 용도입니다.
+        <b>현재 구글 후기 2개</b> — 근처 호텔은 47~92개입니다.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>검색 · 통계</h2>
+      <div class="links">
+        <a href="https://search.google.com/search-console" target="_blank" rel="noopener">구글 서치콘솔</a>
+        <a href="https://searchadvisor.naver.com/" target="_blank" rel="noopener">네이버 서치어드바이저</a>
+        <a href="https://www.bing.com/webmasters" target="_blank" rel="noopener">Bing 웹마스터</a>
+        <a href="https://analytics.google.com" target="_blank" rel="noopener">구글 애널리틱스</a>
+      </div>
+      <p class="warn">
+        아직 <b>검색 등록 전</b>입니다. index.html의
+        <code>google-site-verification</code> · <code>naver-site-verification</code> 값이 비어 있고,
+        방문자 통계(GA)도 붙이지 않았습니다. 계약 후 함께 처리합니다.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>저장소</h2>
+      <div class="links">
+        <a href="https://github.com/choikiho20-cyber/jc-hotel" target="_blank" rel="noopener">GitHub 저장소</a>
+        <a href="https://github.com/choikiho20-cyber/jc-hotel/commits/master" target="_blank" rel="noopener">변경 기록</a>
+        <a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener">토큰 관리</a>
+      </div>
+      <p class="warn">저장소가 <b>공개(public)</b>입니다. 내부 문서를 이 폴더에 넣으면 그대로 인터넷에 공개됩니다.</p>
     </div>
   </section>
 </div>
@@ -214,8 +274,9 @@ $('tokClear').onclick=()=>{ localStorage.removeItem('jc_gh_token'); gateRefresh(
 /* ---------- 탭 ---------- */
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
-  $('tab-pics').hidden=b.dataset.tab!=='pics';
-  $('tab-blog').hidden=b.dataset.tab!=='blog';
+  document.querySelectorAll('section[id^="tab-"]').forEach(sec=>{
+    sec.hidden = sec.id !== 'tab-'+b.dataset.tab;
+  });
 });
 
 /* ---------- 사진 ---------- */

@@ -529,6 +529,18 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
 .cell .free{display:inline-block;width:auto;margin-top:12px;font-family:var(--lat);font-size:11px;letter-spacing:.2em;color:var(--brass);border:1px solid var(--line);padding:3px 9px}
 
 /* ── JECHEON ───────────────────────────────────── */
+/* ── REVIEWS ─────────────────────────── */
+.revsec{background:var(--deep)}
+.revgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:clamp(32px,4vw,44px)}
+@media(max-width:720px){.revgrid{grid-template-columns:1fr}}
+.revcard{background:var(--ink);box-shadow:0 0 0 1px rgba(255,255,255,.09);padding:clamp(26px,4vw,36px)}
+.revcard b{display:block;font-family:var(--disp);font-size:clamp(18px,2.2vw,21px);font-weight:700;color:#fff;margin-bottom:10px}
+.revcard p{margin:0 0 18px;font-size:15px;line-height:1.75}
+.revbtn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:13px 22px;
+  border:1px solid var(--brass);color:var(--brass);font-size:14px;letter-spacing:.02em;transition:.25s}
+.revbtn:hover{background:var(--brass);color:var(--ink)}
+.revbtn svg{width:15px;height:15px;flex:none;fill:currentColor}
+
 /* ── FAQ ─────────────────────────── */
 .faqsec{background:var(--deep)}
 .faq{margin-top:clamp(32px,4vw,48px);border-top:1px solid rgba(255,255,255,.1)}
@@ -590,6 +602,13 @@ footer .brand{margin-bottom:20px}
 .maps .m-kakao svg{fill:#FFE300}
 .maps .m-google svg{fill:#4285F4}
 .maps a:hover svg{fill:var(--ink)}
+/* 관리 진입 — 대표 전용. 실운영 전환 시 숨기려면 이 규칙에 display:none */
+.adminbtn{position:fixed;left:14px;bottom:calc(var(--bar) + 14px);z-index:60;
+  display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:8px 13px;
+  background:rgba(14,28,27,.82);border:1px solid var(--line);color:rgba(221,228,225,.6);
+  font-size:12px;letter-spacing:.02em;backdrop-filter:blur(6px);transition:.25s}
+.adminbtn:hover{background:var(--brass);border-color:var(--brass);color:var(--ink)}
+@media(max-width:640px){.adminbtn{left:10px;font-size:11px;padding:7px 11px;min-height:34px}}
 .copy{max-width:1240px;margin:56px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.07);font-size:12px;color:rgba(221,228,225,.4)}
 @media(max-width:860px){.fgrid{grid-template-columns:1fr;gap:34px}}
 
@@ -690,6 +709,7 @@ footer .brand{margin-bottom:20px}
     <a href="#breakfast">Breakfast</a>
     <a href="#facility">Facilities</a>
     <a href="#jecheon">Around Jecheon</a>
+    <a href="#reviews">Reviews</a>
     <a href="#faq">FAQ</a>
     <a href="#access">Directions</a>
     <a href="gallery.html">Photos</a>
@@ -713,7 +733,8 @@ footer .brand{margin-bottom:20px}
       <a href="#breakfast">Breakfast</a>
       <a href="#facility">Facilities</a>
       <a href="#jecheon">Around Jecheon</a>
-      <a href="#faq">FAQ</a>
+      <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
     <a href="#access">Directions</a>
       <a href="gallery.html">Photos</a>
       <a href="../blog.html">Journal</a>
@@ -1134,6 +1155,27 @@ footer .brand{margin-bottom:20px}
 </section>
 
 <!-- ── FAQ ─────────────────────────── -->
+<!-- ── Reviews ────────────────────────────────── -->
+<section class="revsec" id="reviews">
+  <div class="wrap rise">
+    <p class="eyebrow">Reviews</p>
+    <h2>Guests say it<br>better than we can.</h2>
+    <p class="lead" style="max-width:56ch">We do not write our own reviews. Please read what guests who actually stayed here have written, on the platforms where they wrote it.</p>
+    <div class="revgrid">
+      <div class="revcard">
+        <b>Google reviews</b>
+        <p>These appear directly in Google Maps and Search. This is where most international guests look first.</p>
+        <a class="revbtn" href="https://search.google.com/local/writereview?placeid=ChIJCQ3Pgt-RYzUR-ewmVvSUYPc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Write a review</a>
+      </div>
+      <div class="revcard">
+        <b>Naver booking reviews</b>
+        <p>If you booked through Naver, you can leave a review from your booking history.</p>
+        <a class="revbtn" href="https://booking.naver.com/booking/3/bizes/1224681" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Naver booking</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="faqsec" id="faq">
   <div class="wrap">
     <div class="rise">
@@ -1247,6 +1289,8 @@ footer .brand{margin-bottom:20px}
   </div>
   <p class="copy">© 2026 JC Hotel Jecheon. This is a working draft; photos and room details will be replaced with final material.</p>
 </footer>
+
+<a class="adminbtn" href="../admin.html" title="Admin">⚙ Admin</a>
 
 <script>
 // 네비 배경
