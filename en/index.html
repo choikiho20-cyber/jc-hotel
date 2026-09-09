@@ -77,6 +77,10 @@
 <meta name="google-site-verification" content="">
 <meta name="naver-site-verification" content="">
 
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#0E1C1B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Italiana&display=swap" rel="stylesheet">
@@ -515,6 +519,24 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
 .cell .free{display:inline-block;width:auto;margin-top:12px;font-family:var(--lat);font-size:11px;letter-spacing:.2em;color:var(--brass);border:1px solid var(--line);padding:3px 9px}
 
 /* ── JECHEON ───────────────────────────────────── */
+/* ── FAQ ─────────────────────────── */
+.faqsec{background:var(--deep)}
+.faq{margin-top:clamp(32px,4vw,48px);border-top:1px solid rgba(255,255,255,.1)}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.1)}
+.faq-item summary{
+  list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;
+  gap:20px;padding:22px 2px;font-size:clamp(15.5px,1.7vw,17.5px);font-weight:500;color:#fff;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{
+  content:'';flex:0 0 auto;width:9px;height:9px;margin-top:8px;
+  border-right:1.5px solid var(--brass);border-bottom:1.5px solid var(--brass);
+  transform:rotate(45deg);transition:transform .3s;
+}
+.faq-item[open] summary::after{transform:rotate(-135deg);margin-top:12px}
+.faq-a{padding:0 2px 24px}
+.faq-a p{margin:0;font-size:15px;line-height:1.85;color:rgba(221,228,225,.72);max-width:66ch}
+
 .jc{background:var(--deep)}
 .places{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(12px,3vw,22px);margin-top:46px}
 .place .ph{aspect-ratio:3/4}
@@ -529,6 +551,12 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
 .place span{font-size:13px;color:rgba(221,228,225,.55)}
 
 /* ── 푸터 ───────────────────────────────────── */
+/* ── 지도 ───────────────────────────────────── */
+.mapsec{padding-bottom:0}
+.mapbox{margin-top:26px;border:1px solid var(--line);aspect-ratio:21/8;overflow:hidden;background:var(--deep)}
+.mapbox iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.25) contrast(1.05)}
+@media(max-width:700px){.mapbox{aspect-ratio:4/3}}
+
 footer{padding:clamp(64px,8vw,100px) var(--pad) calc(var(--bar) + 48px);border-top:1px solid var(--line)}
 .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:44px;max-width:1240px;margin:0 auto}
 footer .brand{margin-bottom:20px}
@@ -554,6 +582,86 @@ footer .brand{margin-bottom:20px}
   html{scroll-behavior:auto}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is parking available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We have our own car park and it is free for guests. We do not offer valet parking, so you park yourself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What time is breakfast?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Buffet breakfast is served at CAFE jc on the first floor, 07:00 to 09:00. It is closed on Mondays."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much is breakfast?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "KRW 15,000 per person. Add it when you book, or pay at the hotel. Terms differ by booking channel, so please confirm with the front desk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a sauna or gym?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Older listings on some booking sites may say otherwise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I leave my luggage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The front desk holds bags, including after checkout."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a computer in the room?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not in standard rooms. Two work PCs and a printer are in the first-floor lounge, and the Deluxe 2PC room type has PCs in the room."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the check-in and check-out times?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check-in is 15:00 and check-out is 11:00. Please call the front desk if you arrive after 22:00."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you have Korean ondol rooms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We run an Ondol Room for 4 and an Ondol Room for 8; the larger one sleeps up to 10 guests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there any discounts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Digital Tourist Residency Card gives 10% off the room rate, and paying with the Jecheon Moa Card adds local currency benefits."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -565,6 +673,7 @@ footer .brand{margin-bottom:20px}
     <a href="#breakfast">Breakfast</a>
     <a href="#facility">Facilities</a>
     <a href="#jecheon">Around Jecheon</a>
+    <a href="#faq">FAQ</a>
     <a href="#access">Directions</a>
     <a href="../blog.html">Journal</a>
   </div>
@@ -587,7 +696,8 @@ footer .brand{margin-bottom:20px}
     <a href="#breakfast">Breakfast</a>
       <a href="#facility">Facilities</a>
       <a href="#jecheon">Around Jecheon</a>
-      <a href="#access">Directions</a>
+      <a href="#faq">FAQ</a>
+    <a href="#access">Directions</a>
       <a href="../blog.html">Journal</a>
       <a href="../">한국어</a>
       <a href="tel:043-651-8000" style="color:var(--brass)">Call +82-43-651-8000</a>
@@ -1005,6 +1115,55 @@ footer .brand{margin-bottom:20px}
   </div>
 </section>
 
+<!-- ── FAQ ─────────────────────────── -->
+<section class="faqsec" id="faq">
+  <div class="wrap">
+    <div class="rise">
+      <p class="eyebrow">FAQ</p>
+      <h2>Frequently asked</h2>
+      <p class="lead" style="max-width:54ch">The questions guests ask most often before booking.</p>
+    </div>
+    <div class="faq rise">
+      <details class="faq-item">
+        <summary>Is parking available?</summary>
+        <div class="faq-a"><p>Yes. We have our own car park and it is free for guests. We do not offer valet parking, so you park yourself.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>What time is breakfast?</summary>
+        <div class="faq-a"><p>Buffet breakfast is served at CAFE jc on the first floor, 07:00 to 09:00. It is closed on Mondays.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>How much is breakfast?</summary>
+        <div class="faq-a"><p>KRW 15,000 per person. Add it when you book, or pay at the hotel. Terms differ by booking channel, so please confirm with the front desk.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a sauna or gym?</summary>
+        <div class="faq-a"><p>No. Older listings on some booking sites may say otherwise.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I leave my luggage?</summary>
+        <div class="faq-a"><p>Yes. The front desk holds bags, including after checkout.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a computer in the room?</summary>
+        <div class="faq-a"><p>Not in standard rooms. Two work PCs and a printer are in the first-floor lounge, and the Deluxe 2PC room type has PCs in the room.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>What are the check-in and check-out times?</summary>
+        <div class="faq-a"><p>Check-in is 15:00 and check-out is 11:00. Please call the front desk if you arrive after 22:00.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Do you have Korean ondol rooms?</summary>
+        <div class="faq-a"><p>Yes. We run an Ondol Room for 4 and an Ondol Room for 8; the larger one sleeps up to 10 guests.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Are there any discounts?</summary>
+        <div class="faq-a"><p>The Digital Tourist Residency Card gives 10% off the room rate, and paying with the Jecheon Moa Card adds local currency benefits.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ── Around Jecheon ──────────────────────────────── -->
 <section class="jc" id="jecheon">
   <div class="wrap">
@@ -1025,6 +1184,17 @@ footer .brand{margin-bottom:20px}
       <a href="https://tour.jecheon.go.kr" target="_blank" rel="noopener">Jecheon Tourism</a> and
       <a href="https://www.jimff.org/kor/default.asp" target="_blank" rel="noopener">Jecheon International Music &amp; Film Festival</a>.
     </p>
+  </div>
+</section>
+
+<!-- ── 지도 ───────────────────────────────────── -->
+<section class="mapsec" id="map">
+  <div class="wrap rise">
+    <p class="eyebrow">Map</p>
+    <div class="mapbox">
+      <iframe src="https://maps.google.com/maps?q=%EC%B6%A9%EB%B6%81%20%EC%A0%9C%EC%B2%9C%EC%8B%9C%20%EB%AA%85%EB%8F%99%205-12%20%EC%A0%9C%EC%B2%9CJC%ED%98%B8%ED%85%94&hl=en&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Map showing JC Hotel Jecheon" allowfullscreen></iframe>
+    </div>
   </div>
 </section>
 
