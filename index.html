@@ -236,13 +236,13 @@ p{margin:0 0 16px;color:rgba(221,228,225,.74)}
 .lang-menu a[aria-current="true"]{color:var(--brass)}
 @media(max-width:900px){.lang{display:none}}
 /* 모바일에선 드롭다운 대신 상단바에 언어 전환을 바로 노출한다 (외국인 손님이 햄버거를 열 이유가 없다) */
-.lang-m{display:none}
+.langsw{display:none}
 @media(max-width:900px){
-  .lang-m{display:inline-flex;align-items:center;justify-content:center;
+  .langsw{display:inline-flex;align-items:center;justify-content:center;
     min-width:48px;min-height:40px;padding:8px 12px;
     border:1px solid var(--line);color:var(--brass);
     font-family:var(--lat);font-size:15px;letter-spacing:.1em;transition:.25s}
-  .lang-m:hover,.lang-m:focus-visible{background:var(--brass);color:var(--ink)}
+  .langsw:hover,.langsw:focus-visible{background:var(--brass);color:var(--ink)}
 }
 @media(max-width:900px){.menu,.nav-tel{display:none}.mnav{display:block}}
 
@@ -726,7 +726,7 @@ footer .brand{margin-bottom:20px}
   </div>
   <div style="display:flex;align-items:center;gap:18px">
     <a class="nav-tel" href="tel:043-651-8000">043-651-8000</a>
-    <a class="lang-m" href="en/" lang="en" hreflang="en" aria-label="English version">EN</a>
+    <a class="langsw" href="en/" lang="en" hreflang="en" aria-label="English version">EN</a>
     <details class="lang">
       <summary>한국어</summary>
       <div class="lang-menu">
