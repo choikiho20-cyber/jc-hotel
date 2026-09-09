@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>관리 · 제천 JC호텔</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --ink:#0E1C1B; --deep:#15302D; --mist:#DDE4E1; --brass:#C0A062;
+  --line:rgba(192,160,98,.28); --bad:#E0685A; --good:#4FA87E;
+  --body:'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--mist);font-family:var(--body);font-size:16px;line-height:1.7}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+a{color:var(--brass)}
+
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--ink);z-index:20}
+header b{font-size:15px;letter-spacing:.02em}
+header .who{font-size:12px;color:rgba(221,228,225,.5)}
+
+main{max-width:900px;margin:0 auto;padding:18px 16px 120px}
+.card{border:1px solid var(--line);padding:16px;margin-bottom:16px;background:var(--deep)}
+.card h2{margin:0 0 4px;font-size:15px;letter-spacing:.02em}
+.card p.hint{margin:0 0 14px;font-size:13px;color:rgba(221,228,225,.55)}
+
+label{display:block;font-size:13px;color:rgba(221,228,225,.7);margin:12px 0 5px}
+input[type=text],input[type=password],input[type=date],textarea,select{
+  width:100%;padding:11px 12px;background:rgba(0,0,0,.28);
+  border:1px solid var(--line);border-radius:0;color:#fff}
+textarea{min-height:190px;resize:vertical;line-height:1.75}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:12px 18px;border:1px solid var(--brass);color:var(--brass);font-size:14px;min-height:46px}
+.btn:hover{background:var(--brass);color:var(--ink)}
+.btn.solid{background:var(--brass);color:var(--ink);font-weight:600}
+.btn.ghost{border-color:var(--line);color:rgba(221,228,225,.7)}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+
+.tabs{display:flex;gap:6px;margin-bottom:16px}
+.tabs button{flex:1;padding:13px 8px;min-height:46px;border:1px solid var(--line);font-size:14px;color:rgba(221,228,225,.7)}
+.tabs button.on{background:var(--brass);border-color:var(--brass);color:var(--ink);font-weight:600}
+section[hidden]{display:none}
+
+/* 사진 */
+.filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.filter button{padding:11px 15px;min-height:44px;border:1px solid var(--line);font-size:13px;color:rgba(221,228,225,.7)}
+.filter button.on{background:var(--brass);border-color:var(--brass);color:var(--ink)}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.pic{border:1px solid var(--line);background:#0b1615}
+.pic[hidden]{display:none}
+.pic .thumb{position:relative;aspect-ratio:4/3;overflow:hidden;background:#0b1615}
+.pic img{width:100%;height:100%;object-fit:cover;display:block}
+.pic figcaption{padding:8px 9px;font-size:12px;line-height:1.5;color:rgba(221,228,225,.75)}
+.pic .path{display:block;font-size:10.5px;color:rgba(221,228,225,.35);word-break:break-all;margin-top:3px}
+.pic .swap{display:block;width:100%;padding:12px 9px;min-height:44px;border-top:1px solid var(--line);font-size:12.5px;color:var(--brass)}
+.pic .swap:hover{background:var(--brass);color:var(--ink)}
+.pic.busy{opacity:.5;pointer-events:none}
+
+/* 글 */
+.posts{list-style:none;margin:0;padding:0}
+.posts li{border-top:1px solid rgba(255,255,255,.09);padding:13px 0;display:flex;gap:10px;align-items:flex-start}
+.posts li:last-child{border-bottom:1px solid rgba(255,255,255,.09)}
+.posts .meta{flex:1;min-width:0}
+.posts time{font-size:12px;color:rgba(221,228,225,.45)}
+.posts h3{margin:2px 0 0;font-size:14.5px;font-weight:600;line-height:1.45}
+.posts .acts{display:flex;gap:6px;flex:none}
+.posts .acts button{padding:11px 13px;min-height:44px;border:1px solid var(--line);font-size:12.5px;color:rgba(221,228,225,.75)}
+.posts .acts button.del{border-color:rgba(224,104,90,.5);color:var(--bad)}
+
+/* 상태 */
+#log{position:fixed;left:0;right:0;bottom:0;padding:13px 16px;font-size:13.5px;
+  background:var(--deep);border-top:1px solid var(--line);z-index:30;display:none}
+#log.on{display:block}
+#log.ok{color:var(--good)} #log.err{color:var(--bad)} #log.wait{color:var(--brass)}
+.gate{text-align:center;padding:40px 16px}
+.warn{font-size:12.5px;color:rgba(221,228,225,.5);margin-top:10px;line-height:1.65}
+code{background:rgba(0,0,0,.3);padding:2px 5px;font-size:12.5px}
+@media(max-width:520px){ .pics{grid-template-columns:repeat(auto-fill,minmax(132px,1fr))} }
+</style>
+</head>
+<body>
+
+<header>
+  <b>JC호텔 관리</b>
+  <span class="who" id="who"></span>
+</header>
+
+<main>
+
+<!-- 1. 열쇠 -->
+<div class="card" id="gate">
+  <h2>저장소 열쇠</h2>
+  <p class="hint">GitHub fine-grained 토큰을 넣으면 이 브라우저에 저장됩니다. 서버로는 보내지 않습니다.</p>
+  <label for="tok">토큰</label>
+  <input type="password" id="tok" placeholder="github_pat_..." autocomplete="off">
+  <div class="row">
+    <button class="btn solid" id="tokSave">연결</button>
+    <button class="btn ghost" id="tokClear" hidden>연결 끊기</button>
+  </div>
+  <p class="warn">
+    필요한 권한은 <code>choikiho20-cyber/jc-hotel</code> 저장소의 <b>Contents: Read and write</b> 하나뿐입니다.<br>
+    공용 PC에서는 쓰지 마시고, 다 쓰신 뒤에는 연결을 끊어 주세요.
+  </p>
+</div>
+
+<div id="app" hidden>
+  <div class="tabs">
+    <button data-tab="pics" class="on">사진 교체</button>
+    <button data-tab="blog">블로그</button>
+  </div>
+
+  <!-- 사진 -->
+  <section id="tab-pics">
+    <div class="card">
+      <h2>사진 교체</h2>
+      <p class="hint">바꾸고 싶은 사진의 “교체”를 누르고 새 사진을 고르세요.
+        같은 자리에 덮어쓰기 때문에 홈페이지는 손댈 필요가 없습니다.
+        가로 1600px로 자동 축소해 올립니다.</p>
+      <div class="filter" id="picFilter"></div>
+      <div class="pics" id="pics">불러오는 중…</div>
+    </div>
+  </section>
+
+  <!-- 블로그 -->
+  <section id="tab-blog" hidden>
+    <div class="card">
+      <h2 id="edTitle">새 글 쓰기</h2>
+      <p class="hint">저장하면 홈페이지와 sitemap에 함께 반영됩니다.</p>
+      <label for="pTitle">제목</label>
+      <input type="text" id="pTitle" placeholder="제천 예술의전당 도보 1분 — JC호텔에서 걸어가는 길">
+      <label for="pDate">날짜</label>
+      <input type="date" id="pDate">
+      <label for="pTags">태그 (쉼표로 구분)</label>
+      <input type="text" id="pTags" placeholder="제천 호텔, JC호텔, 제천 예술의전당">
+      <label for="pSum">요약 <span style="color:rgba(221,228,225,.4)">— 목록과 검색결과에 나옵니다</span></label>
+      <textarea id="pSum" style="min-height:80px"></textarea>
+      <label for="pBody">본문</label>
+      <textarea id="pBody" placeholder="한 줄 띄우면 문단이 나뉩니다.&#10;&#10;## 로 시작하면 소제목이 됩니다."></textarea>
+      <p class="warn">빈 줄로 문단, <code>## 소제목</code>, <code>**굵게**</code> 를 쓰실 수 있습니다.</p>
+      <div class="row">
+        <button class="btn solid" id="pSave">저장하고 발행</button>
+        <button class="btn ghost" id="pReset">새 글로</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>올라간 글</h2>
+      <p class="hint" id="postCount"></p>
+      <ul class="posts" id="posts"></ul>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<div id="log"></div>
+
+<script>
+const OWNER='choikiho20-cyber', REPO='jc-hotel', BRANCH='master';
+const API=`https://api.github.com/repos/${OWNER}/${REPO}/contents/`;
+const $=id=>document.getElementById(id);
+
+const log=(msg,kind='wait')=>{const el=$('log');el.className='on '+kind;el.textContent=msg;
+  if(kind!=='wait') setTimeout(()=>{if(el.textContent===msg) el.className=''},4000)};
+
+const token=()=>localStorage.getItem('jc_gh_token')||'';
+const b64enc=s=>btoa(String.fromCharCode(...new TextEncoder().encode(s)));
+const b64dec=b=>new TextDecoder().decode(Uint8Array.from(atob(b),c=>c.charCodeAt(0)));
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+async function gh(path,opts={}){
+  const r=await fetch(API+path,{...opts,headers:{
+    Authorization:'Bearer '+token(), Accept:'application/vnd.github+json', ...(opts.headers||{})}});
+  if(!r.ok) throw new Error(`${r.status} ${(await r.text()).slice(0,140)}`);
+  return r.json();
+}
+// 쓰기 직전에 sha를 다시 받아 남의 변경을 덮어쓰지 않게 한다
+async function put(path,contentB64,message){
+  let sha;
+  try{ sha=(await gh(path+'?ref='+BRANCH)).sha; }catch(e){ if(!/^404/.test(e.message)) throw e; }
+  return gh(path,{method:'PUT',body:JSON.stringify({message,content:contentB64,sha,branch:BRANCH})});
+}
+async function getText(path){ return b64dec((await gh(path+'?ref='+BRANCH)).content.replace(/\n/g,'')); }
+
+/* ---------- 열쇠 ---------- */
+function gateRefresh(){
+  const on=!!token();
+  $('app').hidden=!on;
+  $('tokClear').hidden=!on;
+  $('tok').value='';
+  $('tok').placeholder=on?'연결됨 — 바꾸시려면 새 토큰 입력':'github_pat_...';
+  $('who').textContent=on?'연결됨':'연결 안 됨';
+  if(on){ loadPics(); loadPosts(); }
+}
+$('tokSave').onclick=async()=>{
+  const v=$('tok').value.trim();
+  if(!v) return log('토큰을 넣어 주세요.','err');
+  localStorage.setItem('jc_gh_token',v);
+  log('확인 중…');
+  try{ await gh('posts.json?ref='+BRANCH); log('연결됐습니다.','ok'); gateRefresh(); }
+  catch(e){ localStorage.removeItem('jc_gh_token'); log('연결 실패 — 토큰이나 권한을 확인해 주세요. ('+e.message+')','err'); }
+};
+$('tokClear').onclick=()=>{ localStorage.removeItem('jc_gh_token'); gateRefresh(); log('연결을 끊었습니다.','ok'); };
+
+/* ---------- 탭 ---------- */
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  $('tab-pics').hidden=b.dataset.tab!=='pics';
+  $('tab-blog').hidden=b.dataset.tab!=='blog';
+});
+
+/* ---------- 사진 ---------- */
+// 목록·캡션·분류는 gallery.html에서 그대로 읽는다 (갤러리를 고치면 여기도 따라온다)
+let pics=[];
+async function loadPics(){
+  try{
+    const html=await (await fetch('gallery.html?cb='+Date.now())).text();
+    const doc=new DOMParser().parseFromString(html,'text/html');
+    pics=[...doc.querySelectorAll('.cell')].map(c=>{
+      const img=c.querySelector('img');
+      return {cat:c.dataset.cat, path:img.getAttribute('src'), alt:img.getAttribute('alt')};
+    });
+    const labels={rooms:'객실',breakfast:'조식',facility:'시설',jecheon:'제천'};
+    const cats=['all',...new Set(pics.map(p=>p.cat))];
+    $('picFilter').innerHTML=cats.map((c,i)=>
+      `<button data-cat="${c}"${i===0?' class="on"':''}>${c==='all'?'전체':labels[c]||c} ${
+        c==='all'?pics.length:pics.filter(p=>p.cat===c).length}</button>`).join('');
+    $('picFilter').onclick=e=>{
+      const b=e.target.closest('button'); if(!b) return;
+      $('picFilter').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+      document.querySelectorAll('.pic').forEach(f=>{
+        f.hidden=!(b.dataset.cat==='all'||f.dataset.cat===b.dataset.cat)});
+    };
+    $('pics').innerHTML=pics.map((p,i)=>`
+      <figure class="pic" data-cat="${p.cat}" data-i="${i}">
+        <div class="thumb"><img loading="lazy" src="${esc(p.path)}?cb=${Date.now()}" alt=""></div>
+        <figcaption>${esc(p.alt)}<span class="path">${esc(p.path)}</span></figcaption>
+        <button class="swap">교체</button>
+      </figure>`).join('');
+    $('pics').onclick=e=>{ const b=e.target.closest('.swap'); if(b) pickFile(b.closest('.pic')); };
+  }catch(e){ $('pics').textContent='사진 목록을 불러오지 못했습니다: '+e.message; }
+}
+
+function pickFile(fig){
+  const inp=document.createElement('input');
+  inp.type='file'; inp.accept='image/*';
+  inp.onchange=()=>{ if(inp.files[0]) swap(fig,inp.files[0]); };
+  inp.click();
+}
+
+// 원본을 그대로 올리면 저장소가 무거워지고 페이지가 느려지므로 항상 줄여서 올린다
+function shrink(file,max=1600,q=.82){
+  return new Promise((res,rej)=>{
+    const img=new Image(), url=URL.createObjectURL(file);
+    img.onload=()=>{
+      URL.revokeObjectURL(url);
+      let {naturalWidth:w,naturalHeight:h}=img;
+      if(w>max||h>max){ const s=max/Math.max(w,h); w=Math.round(w*s); h=Math.round(h*s); }
+      const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+      cv.getContext('2d').drawImage(img,0,0,w,h);
+      cv.toBlob(b=>b?res(b):rej(new Error('이미지를 변환하지 못했습니다')),'image/jpeg',q);
+    };
+    img.onerror=()=>{URL.revokeObjectURL(url);rej(new Error('이미지를 읽지 못했습니다'))};
+    img.src=url;
+  });
+}
+
+async function swap(fig,file){
+  const p=pics[+fig.dataset.i];
+  if(!confirm(`"${p.alt}"\n이 사진을 새로 올린 사진으로 바꿉니다. 되돌리려면 다시 올려야 합니다.\n\n계속할까요?`)) return;
+  fig.classList.add('busy'); log('사진을 줄이는 중…');
+  try{
+    const blob=await shrink(file);
+    const b64=await new Promise(r=>{const fr=new FileReader();
+      fr.onload=()=>r(fr.result.split(',')[1]); fr.readAsDataURL(blob)});
+    log('올리는 중… ('+Math.round(blob.size/1024)+'KB)');
+    await put(p.path,b64,`사진 교체: ${p.path}`);
+    fig.querySelector('img').src=p.path+'?cb='+Date.now();
+    log('바꿨습니다. 홈페이지 반영까지 1~2분 걸립니다.','ok');
+  }catch(e){ log('실패: '+e.message,'err'); }
+  finally{ fig.classList.remove('busy'); }
+}
+
+/* ---------- 블로그 ---------- */
+let posts=[], editing=null;
+
+async function loadPosts(){
+  try{
+    posts=JSON.parse(await getText('posts.json'));
+    posts.sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+    renderPosts();
+  }catch(e){ $('posts').innerHTML='<li>글을 불러오지 못했습니다: '+esc(e.message)+'</li>'; }
+}
+function renderPosts(){
+  $('postCount').textContent=posts.length+'편';
+  $('posts').innerHTML=posts.map(p=>`
+    <li>
+      <div class="meta"><time>${esc(p.date)}</time><h3>${esc(p.title)}</h3></div>
+      <div class="acts">
+        <button data-ed="${p.id}">수정</button>
+        <button class="del" data-del="${p.id}">삭제</button>
+      </div>
+    </li>`).join('')||'<li>아직 글이 없습니다.</li>';
+}
+$('posts').onclick=e=>{
+  const ed=e.target.closest('[data-ed]'), del=e.target.closest('[data-del]');
+  if(ed) edit(posts.find(p=>String(p.id)===ed.dataset.ed));
+  if(del) removePost(posts.find(p=>String(p.id)===del.dataset.del));
+};
+
+// 본문 HTML ↔ 편집용 평문
+const toPlain=html=>String(html||'')
+  .replace(/<h3>(.*?)<\/h3>/gi,'\n\n## $1\n\n')   // 빈 줄 둘이어야 toHtml이 문단으로 끊는다
+  .replace(/<strong>(.*?)<\/strong>/gi,'**$1**')
+  .replace(/<\/p>\s*<p>/gi,'\n\n').replace(/<\/?p>/gi,'')
+  .replace(/<br\s*\/?>/gi,'\n').replace(/&amp;/g,'&').trim();
+
+const toHtml=text=>String(text||'').trim().split(/\n{2,}/).map(block=>{
+  const b=block.trim(); if(!b) return '';
+  const bold=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  if(b.startsWith('## ')) return '<h3>'+bold(b.slice(3).trim())+'</h3>';
+  return '<p>'+bold(b).replace(/\n/g,'<br>')+'</p>';
+}).join('');
+
+function edit(p){
+  editing=p.id;
+  $('edTitle').textContent='글 수정';
+  $('pTitle').value=p.title||''; $('pDate').value=p.date||'';
+  $('pTags').value=(p.tags||[]).join(', '); $('pSum').value=p.summary||'';
+  $('pBody').value=toPlain(p.content);
+  document.querySelector('.tabs button[data-tab="blog"]').click();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+$('pReset').onclick=()=>{
+  editing=null; $('edTitle').textContent='새 글 쓰기';
+  ['pTitle','pTags','pSum','pBody'].forEach(id=>$(id).value='');
+  $('pDate').value=new Date().toISOString().slice(0,10);
+};
+
+$('pSave').onclick=async()=>{
+  const title=$('pTitle').value.trim(), body=$('pBody').value.trim();
+  if(!title) return log('제목을 넣어 주세요.','err');
+  if(!body)  return log('본문을 넣어 주세요.','err');
+  const post={
+    id: editing ?? (Math.max(0,...posts.map(p=>+p.id||0))+1),
+    title,
+    date: $('pDate').value || new Date().toISOString().slice(0,10),
+    tags: $('pTags').value.split(',').map(s=>s.trim()).filter(Boolean),
+    summary: $('pSum').value.trim(),
+    content: toHtml(body),
+  };
+  $('pSave').disabled=true;
+  try{
+    await savePosts(list=>{
+      const i=list.findIndex(p=>String(p.id)===String(post.id));
+      if(i>=0) list[i]=post; else list.push(post);
+      return list;
+    }, editing?`글 수정: ${title}`:`글 발행: ${title}`);
+    log('발행했습니다. 홈페이지 반영까지 1~2분 걸립니다.','ok');
+    $('pReset').click();
+  }catch(e){ log('실패: '+e.message,'err'); }
+  finally{ $('pSave').disabled=false; }
+};
+
+async function removePost(p){
+  if(!confirm(`"${p.title}"\n이 글을 지웁니다. 되돌릴 수 없습니다.\n\n계속할까요?`)) return;
+  try{
+    await savePosts(list=>list.filter(x=>String(x.id)!==String(p.id)), `글 삭제: ${p.title}`);
+    log('지웠습니다.','ok');
+  }catch(e){ log('실패: '+e.message,'err'); }
+}
+
+// 저장 직전에 원본을 다시 읽어 글해줌이 그사이 올린 글을 덮어쓰지 않게 한다
+async function savePosts(mutate,message){
+  log('저장 중…');
+  const fresh=JSON.parse(await getText('posts.json'));
+  const next=mutate(fresh);
+  next.sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  await put('posts.json', b64enc(JSON.stringify(next,null,2)+'\n'), message);
+  posts=next; renderPosts();
+  await syncSitemap(next);
+}
+
+// 글이 바뀌면 sitemap도 같이 갱신한다 (수동 등록이 필요 없도록)
+async function syncSitemap(list){
+  try{
+    const BASE='https://choikiho20-cyber.github.io/jc-hotel';
+    const today=new Date().toISOString().slice(0,10);
+    let xml=await getText('sitemap.xml');
+    // 이전에 넣은 글 URL을 걷어내고 현재 글로 다시 채운다
+    xml=xml.replace(/\s*<url>\s*<loc>[^<]*blog\.html\?id=[^<]*<\/loc>[\s\S]*?<\/url>/g,'');
+    xml=xml.replace(/(<loc>[^<]*\/blog\.html<\/loc>\s*<lastmod>)[^<]*(<\/lastmod>)/, `$1${today}$2`);
+    const entries=list.map(p=>
+`  <url>
+    <loc>${BASE}/blog.html?id=${p.id}</loc>
+    <lastmod>${p.date}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`).join('\n');
+    xml=xml.replace('</urlset>', entries+'\n</urlset>');
+    await put('sitemap.xml', b64enc(xml), 'sitemap 갱신 (글 '+list.length+'편)');
+  }catch(e){ log('글은 저장됐지만 sitemap 갱신에 실패했습니다: '+e.message,'err'); }
+}
+
+/* ---------- 시작 ---------- */
+$('pReset').click();
+gateRefresh();
+</script>
+</body>
+</html>

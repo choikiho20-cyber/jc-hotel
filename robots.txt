@@ -32,4 +32,8 @@ Allow: /
 User-agent: Yeti
 Allow: /
 
+# 관리 화면은 검색에 잡히지 않게 합니다
+User-agent: *
+Disallow: /admin.html
+
 Sitemap: https://choikiho20-cyber.github.io/jc-hotel/sitemap.xml
