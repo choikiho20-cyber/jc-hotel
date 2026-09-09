@@ -386,7 +386,12 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
 .grade-ko{font-size:13px;letter-spacing:.1em;color:rgba(221,228,225,.5)}
 /* auto-fill + 최대폭: 등급에 카드가 하나뿐이어도 혼자 넓어지지 않는다 */
 /* 카드마다 테두리를 준다 — 그리드에 배경을 깔면 카드가 없는 칸이 빈 상자로 남는다 */
-.rmgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,340px));gap:14px;justify-content:start;margin-top:14px}
+/* 그룹당 카드가 1·2·4·2장이라 3칸이면 오른쪽이 크게 빈다. 2칸이면 2·4·2장 그룹이 꽉 찬다 */
+.rmgrid{display:grid;grid-template-columns:repeat(2,minmax(0,460px));gap:14px;justify-content:center;margin-top:14px}
+/* 카드가 한 장뿐인 그룹(Standard)은 한 칸으로 만들어 가운데 오게 한다 */
+.rmgrid:has(> .rm:only-child){grid-template-columns:minmax(0,460px)}
+@media(max-width:860px){.rmgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rmgrid:has(> .rm:only-child){grid-template-columns:minmax(0,min(100%,460px))}}
 .rm{background:var(--ink);border:1px solid rgba(255,255,255,.1);padding:clamp(20px,5vw,26px) clamp(18px,4.5vw,24px) 22px;display:flex;flex-direction:column;transition:background .3s,border-color .3s}
 .rm:hover{background:var(--deep);border-color:var(--line)}
 .rm-photos{
