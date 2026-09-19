@@ -25,6 +25,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://choikiho20-cyber.github.io/jc-hotel/zh/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://choikiho20-cyber.github.io/jc-hotel/ja/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://choikiho20-cyber.github.io/jc-hotel/en/</loc>
     <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>

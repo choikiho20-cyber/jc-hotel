@@ -56,8 +56,9 @@
 <link rel="canonical" href="https://choikiho20-cyber.github.io/jc-hotel/">
 <link rel="alternate" hreflang="ko" href="https://choikiho20-cyber.github.io/jc-hotel/">
 <link rel="alternate" hreflang="en" href="https://choikiho20-cyber.github.io/jc-hotel/en/">
+<link rel="alternate" hreflang="zh-Hans" href="https://choikiho20-cyber.github.io/jc-hotel/zh/">
+<link rel="alternate" hreflang="ja" href="https://choikiho20-cyber.github.io/jc-hotel/ja/">
 <link rel="alternate" hreflang="x-default" href="https://choikiho20-cyber.github.io/jc-hotel/">
-
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="제천 JC호텔">
 <meta property="og:title" content="제천 JC호텔 (제천관광호텔) — 제천 시내 호텔">
@@ -237,11 +238,12 @@ p{margin:0 0 16px;color:rgba(221,228,225,.74)}
 @media(max-width:900px){.lang{display:none}}
 /* 모바일에선 드롭다운 대신 상단바에 언어 전환을 바로 노출한다 (외국인 손님이 햄버거를 열 이유가 없다) */
 .langsw{display:none}
+/* 언어 4종 — 모바일에서는 현재 언어를 뺀 나머지를 상단바에 나란히 노출한다 */
 @media(max-width:900px){
   .langsw{display:inline-flex;align-items:center;justify-content:center;
-    min-width:48px;min-height:40px;padding:8px 12px;
+    min-width:44px;min-height:40px;padding:8px 9px;margin-left:5px;
     border:1px solid var(--line);color:var(--brass);
-    font-family:var(--lat);font-size:15px;letter-spacing:.1em;transition:.25s}
+    font-family:var(--body);font-size:12.5px;letter-spacing:.04em;transition:.25s}
   .langsw:hover,.langsw:focus-visible{background:var(--brass);color:var(--ink)}
 }
 @media(max-width:900px){.menu,.nav-tel{display:none}.mnav{display:block}}
@@ -725,12 +727,16 @@ footer .brand{margin-bottom:20px}
   </div>
   <div style="display:flex;align-items:center;gap:18px">
     <a class="nav-tel" href="tel:043-651-8000">043-651-8000</a>
-    <a class="langsw" href="en/" lang="en" hreflang="en" aria-label="English version">EN</a>
+    <a class="langsw" href="en/" lang="en" hreflang="en" aria-label="English">EN</a>
+    <a class="langsw" href="zh/" lang="zh" hreflang="zh" aria-label="简体中文">中文</a>
+    <a class="langsw" href="ja/" lang="ja" hreflang="ja" aria-label="日本語">日本語</a>
     <details class="lang">
       <summary>한국어</summary>
       <div class="lang-menu">
-        <a href="/jc-hotel/" aria-current="true">한국어</a>
-        <a href="/jc-hotel/en/">English</a>
+        <a href="./" lang="ko" aria-current="true">한국어</a>
+        <a href="en/" lang="en">English</a>
+        <a href="zh/" lang="zh">简体中文</a>
+        <a href="ja/" lang="ja">日本語</a>
       </div>
     </details>
   </div><!-- [전화번호] -->
