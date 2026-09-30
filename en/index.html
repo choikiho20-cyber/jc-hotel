@@ -237,12 +237,14 @@ p{margin:0 0 16px;color:rgba(221,228,225,.74)}
 .lang-menu a[aria-current="true"]{color:var(--brass)}
 /* 언어 전환 — 모바일에서도 데스크톱과 같은 드롭다운 하나로 (9/30: 버튼 3개가 좁은 화면에서 세로로 깨져서 바꿈) */
 @media(max-width:900px){
-  .nav>div:not(.menu){margin-left:auto;margin-right:14px}
   .lang summary{padding:9px 11px;min-height:40px;font-size:13px;letter-spacing:.06em;white-space:nowrap}
   .lang-menu{min-width:168px}
   .lang-menu a{padding:14px 16px;font-size:15px}
 }
-@media(max-width:900px){.menu,.nav-tel{display:none}.mnav{display:block}}
+/* 상단 메뉴가 한 줄에 안 들어가면 층지지 않게 — ① 전화번호 숨김·간격 축소 → ② 햄버거 (9/30, 이 언어 메뉴 길이로 실측한 폭) */
+.menu a,.nav-tel,.lang summary{white-space:nowrap}
+@media(max-width:1580px){.nav-tel{display:none}.menu{gap:22px}}
+@media(max-width:1350px){.menu,.nav-tel{display:none}.mnav{display:block}.nav>div:not(.menu){margin-left:auto;margin-right:14px}}
 
 /* ── 히어로: 좌 텍스트 패널 / 우 사진 ─────────── */
 .hero{
@@ -1401,6 +1403,11 @@ document.getElementById('book2').addEventListener('click', go);
   document.addEventListener('click',function(e){ if(lang.open && !lang.contains(e.target)) lang.open=false; });
   lang.addEventListener('toggle',function(){ if(lang.open && mnav) mnav.open=false; });
   if(mnav) mnav.addEventListener('toggle',function(){ if(mnav.open) lang.open=false; });
+  /* 햄버거 패널을 상단바 바로 아래에 붙인다 (고정값 64px이면 상단바가 높을 때 첫 메뉴가 가려짐) */
+  var nav=document.getElementById('nav'), panel=mnav && mnav.querySelector('.mnav-panel');
+  function place(){ if(mnav.open && nav && panel) panel.style.top=Math.round(nav.getBoundingClientRect().bottom)+'px'; }
+  if(panel){ mnav.addEventListener('toggle',place); addEventListener('resize',place);
+    if(window.ResizeObserver) new ResizeObserver(place).observe(nav,{box:'border-box'}); else addEventListener('scroll',place,{passive:true}); }
 })();
 </script>
 </body>
