@@ -229,16 +229,12 @@ p{margin:0 0 16px;color:rgba(221,228,225,.74)}
 .lang-menu a{display:block;padding:11px 14px;font-size:14px;color:rgba(221,228,225,.8)}
 .lang-menu a:hover{background:rgba(192,160,98,.14);color:var(--brass)}
 .lang-menu a[aria-current="true"]{color:var(--brass)}
-@media(max-width:900px){.lang{display:none}}
-/* 모바일에선 드롭다운 대신 상단바에 언어 전환을 바로 노출한다 (외국인 손님이 햄버거를 열 이유가 없다) */
-.langsw{display:none}
-/* 언어 4종 — 모바일에서는 현재 언어를 뺀 나머지를 상단바에 나란히 노출한다 */
+/* 언어 전환 — 모바일에서도 데스크톱과 같은 드롭다운 하나로 (9/30: 버튼 3개가 좁은 화면에서 세로로 깨져서 바꿈) */
 @media(max-width:900px){
-  .langsw{display:inline-flex;align-items:center;justify-content:center;
-    min-width:44px;min-height:40px;padding:8px 9px;margin-left:5px;
-    border:1px solid var(--line);color:var(--brass);
-    font-family:var(--body);font-size:12.5px;letter-spacing:.04em;transition:.25s}
-  .langsw:hover,.langsw:focus-visible{background:var(--brass);color:var(--ink)}
+  .nav>div:not(.menu){margin-left:auto;margin-right:14px}
+  .lang summary{padding:9px 11px;min-height:40px;font-size:13px;letter-spacing:.06em;white-space:nowrap}
+  .lang-menu{min-width:168px}
+  .lang-menu a{padding:14px 16px;font-size:15px}
 }
 @media(max-width:900px){.menu,.nav-tel{display:none}.mnav{display:block}}
 
@@ -720,9 +716,6 @@ footer .brand{margin-bottom:20px}
 </div>
 <div style="display:flex;align-items:center;gap:18px">
 <a class="nav-tel" href="tel:043-651-8000">043-651-8000</a>
-    <a class="langsw" href="../" lang="ko" hreflang="ko" aria-label="한국어">KO</a>
-    <a class="langsw" href="../en/" lang="en" hreflang="en" aria-label="English">EN</a>
-    <a class="langsw" href="../ja/" lang="ja" hreflang="ja" aria-label="日本語">日本語</a>
 <details class="lang">
 <summary>简体中文</summary>
 <div class="lang-menu">
@@ -1355,6 +1348,16 @@ const go = e => {
 };
 document.getElementById('book').addEventListener('click', go);
 document.getElementById('book2').addEventListener('click', go);
+</script>
+<script>
+/* 언어 드롭다운: 바깥을 누르면 닫고, 햄버거 메뉴와 동시에 열리지 않게 한다 */
+(function(){
+  var lang=document.querySelector('details.lang'), mnav=document.querySelector('details.mnav');
+  if(!lang) return;
+  document.addEventListener('click',function(e){ if(lang.open && !lang.contains(e.target)) lang.open=false; });
+  lang.addEventListener('toggle',function(){ if(lang.open && mnav) mnav.open=false; });
+  if(mnav) mnav.addEventListener('toggle',function(){ if(mnav.open) lang.open=false; });
+})();
 </script>
 </body>
 </html>
