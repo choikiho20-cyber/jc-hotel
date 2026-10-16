@@ -486,13 +486,15 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
 @media(max-width:700px){.walk li{grid-template-columns:1fr;gap:6px;padding-bottom:34px}}
 /* 위치 타임라인 모션 (10/16): 스크롤에 맞춰 금색 선이 내려오고, 선이 닿은 단계마다 점 → 거리 → 장소 순으로 나타난다 */
 .walk.anim{position:relative}
-.walk.anim::after{content:'';position:absolute;left:-1px;top:0;width:1px;height:var(--walk,0px);background:var(--brass);opacity:.7;transition:height .18s ease-out}
-.walk.anim li::before{transform:scale(0);transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
-.walk.anim li .t{opacity:0;transform:translateY(8px);transition:opacity .5s ease .08s,transform .5s ease .08s}
-.walk.anim li>div{opacity:0;transform:translateX(-28px);transition:opacity .65s cubic-bezier(.2,.7,.3,1) .26s,transform .65s cubic-bezier(.2,.7,.3,1) .26s}
+.walk.anim::after{content:'';position:absolute;left:-1px;top:0;width:1px;height:var(--walk,0px);background:var(--brass);opacity:.7}
+.walk.anim li::before{transform:scale(0);transition:transform .6s cubic-bezier(.3,1.6,.5,1)}
+.walk.anim li .t{opacity:0;transform:translateY(8px);transition:opacity .8s ease .12s,transform .8s ease .12s}
+.walk.anim li>div{opacity:0;transform:translateX(-28px);transition:opacity 1s cubic-bezier(.2,.7,.3,1) .4s,transform 1s cubic-bezier(.2,.7,.3,1) .4s}
 .walk.anim li.on::before{transform:scale(1)}
 .walk.anim li.on .t,.walk.anim li.on>div{opacity:1;transform:none}
 @media(max-width:700px){.walk.anim li>div{transform:translateX(-16px)}}
+/* 출발점(JC호텔): 속이 빈 큰 점 */
+.walk li.start::before{left:-8px;top:7px;width:15px;height:15px;box-sizing:border-box;background:var(--deep);border:2px solid var(--brass)}
 
 /* ── 선수단 숙소 ─────────────────────────────── */
 .proofsec{padding-top:0}
@@ -1046,6 +1048,13 @@ footer .brand{margin-bottom:20px}
     </figure>
 
     <ol class="walk">
+      <li class="start">
+        <span class="t">Start</span>
+        <div>
+          <h3>JC Hotel</h3>
+          <p>All distances are measured from the hotel.</p>
+        </div>
+      </li>
       <li>
         <span class="t">Next door</span>
         <div>
@@ -1319,15 +1328,23 @@ document.querySelectorAll('.rise').forEach(el => io.observe(el));
   if (!walk || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   walk.classList.add('anim');
   const items = [...walk.children];
-  let drawn = 0;
-  const draw = () => {
-    const r = walk.getBoundingClientRect();
-    drawn = Math.max(drawn, Math.min(r.height, innerHeight * 0.78 - r.top));
-    walk.style.setProperty('--walk', Math.max(0, drawn) + 'px');
+  // 선은 스크롤 위치(target)를 따라가되 최고 속도를 넘지 않는다 — 빨리 내려도 전체가 약 4초에 걸쳐 그려진다
+  let target = 0, drawn = 0, last = 0, raf = 0;
+  const speed = () => Math.max(90, walk.offsetHeight / 4.2);
+  const step = t => {
+    const dt = last ? Math.min(.05, (t - last) / 1000) : 0; last = t;
+    drawn = Math.min(target, drawn + speed() * dt);
+    walk.style.setProperty('--walk', drawn + 'px');
     items.forEach(li => { if (li.offsetTop + 14 <= drawn) li.classList.add('on'); });
-    if (drawn >= r.height) { removeEventListener('scroll', draw); removeEventListener('resize', draw); }
+    if (drawn < target) raf = requestAnimationFrame(step); else { raf = 0; last = 0; }
   };
-  addEventListener('scroll', draw, {passive:true}); addEventListener('resize', draw); draw();
+  const aim = () => {
+    const r = walk.getBoundingClientRect();
+    target = Math.max(target, Math.min(r.height, innerHeight * 0.78 - r.top));
+    if (target > drawn && !raf) raf = requestAnimationFrame(step);
+    if (target >= r.height) { removeEventListener('scroll', aim); removeEventListener('resize', aim); }
+  };
+  addEventListener('scroll', aim, {passive:true}); addEventListener('resize', aim); aim();
 })();
 
 // 히어로 슬라이드
