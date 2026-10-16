@@ -478,6 +478,15 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
 .walk h3{margin:0 0 8px}
 .walk p{margin:0;font-size:15px}
 @media(max-width:700px){.walk li{grid-template-columns:1fr;gap:6px;padding-bottom:34px}}
+/* 위치 타임라인 모션 (10/16): 스크롤에 맞춰 금색 선이 내려오고, 선이 닿은 단계마다 점 → 거리 → 장소 순으로 나타난다 */
+.walk.anim{position:relative}
+.walk.anim::after{content:'';position:absolute;left:-1px;top:0;width:1px;height:var(--walk,0px);background:var(--brass);opacity:.7;transition:height .18s ease-out}
+.walk.anim li::before{transform:scale(0);transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+.walk.anim li .t{opacity:0;transform:translateY(8px);transition:opacity .5s ease .08s,transform .5s ease .08s}
+.walk.anim li>div{opacity:0;transform:translateX(-28px);transition:opacity .65s cubic-bezier(.2,.7,.3,1) .26s,transform .65s cubic-bezier(.2,.7,.3,1) .26s}
+.walk.anim li.on::before{transform:scale(1)}
+.walk.anim li.on .t,.walk.anim li.on>div{opacity:1;transform:none}
+@media(max-width:700px){.walk.anim li>div{transform:translateX(-16px)}}
 
 /* ── 선수단 숙소 ─────────────────────────────── */
 .proofsec{padding-top:0}
@@ -1011,7 +1020,7 @@ footer .brand{margin-bottom:20px}
 <button aria-label="写真6"></button>
 </div>
 </figure>
-<ol class="walk rise">
+<ol class="walk">
 <li>
 <span class="t">隣の建物</span>
 <div>
@@ -1260,6 +1269,23 @@ const io = new IntersectionObserver((es) => {
   es.forEach(e => e.isIntersecting && (e.target.classList.add('in'), io.unobserve(e.target)));
 }, {threshold:.12});
 document.querySelectorAll('.rise').forEach(el => io.observe(el));
+
+// 위치 타임라인: 스크롤을 내리는 만큼 금색 선이 그려지고, 선이 닿은 단계부터 하나씩 나타난다 (한 번만)
+(function(){
+  const walk = document.querySelector('.walk');
+  if (!walk || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  walk.classList.add('anim');
+  const items = [...walk.children];
+  let drawn = 0;
+  const draw = () => {
+    const r = walk.getBoundingClientRect();
+    drawn = Math.max(drawn, Math.min(r.height, innerHeight * 0.78 - r.top));
+    walk.style.setProperty('--walk', Math.max(0, drawn) + 'px');
+    items.forEach(li => { if (li.offsetTop + 14 <= drawn) li.classList.add('on'); });
+    if (drawn >= r.height) { removeEventListener('scroll', draw); removeEventListener('resize', draw); }
+  };
+  addEventListener('scroll', draw, {passive:true}); addEventListener('resize', draw); draw();
+})();
 
 // 히어로 슬라이드
 const track = document.getElementById('track'), sdots = [...document.getElementById('sdots').children];
