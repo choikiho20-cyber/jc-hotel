@@ -151,7 +151,8 @@ p{margin:0 0 16px;color:rgba(221,228,225,.74)}
     linear-gradient(155deg,#1B3A36 0%,#122927 55%,#0D1F1E 100%);
 }
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.ph::after{
+/* 사진 위 작은 표시는 data-label 값이 있을 때만 (빈 상자가 보이지 않게) */
+.ph[data-label]:not([data-label=""])::after{
   content:attr(data-label);
   position:absolute; left:12px; bottom:12px; z-index:2;
   font-size:10px; letter-spacing:.14em; padding:4px 9px;
@@ -1213,8 +1214,8 @@ footer .brand{margin-bottom:20px}
 <h2>収容人数<br/>一日で巡れます。</h2>
 </div>
 <div class="places rise">
-<div class="place"><div class="ph" data-label="임시"><img alt="清風湖を行く遊覧船" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1689692992143-5826c267e5c7?auto=format&amp;fit=crop&amp;w=800&amp;q=80'" src="../images/cheongpungho.jpg"/></div><h3>清風湖</h3><span>ケーブルカーとモノレール</span></div>
-<div class="place"><div class="ph" data-label="임시"><img alt="義林池龍湫滝とガラス展望台" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1603852452515-2dc92bd9c6f1?auto=format&amp;fit=crop&amp;w=800&amp;q=80'" src="../images/uirimji.jpg"/></div><h3>義林池</h3><span>三韓時代に築かれた貯水池</span></div>
+<div class="place"><div class="ph"><img alt="清風湖を行く遊覧船" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1689692992143-5826c267e5c7?auto=format&amp;fit=crop&amp;w=800&amp;q=80'" src="../images/cheongpungho.jpg"/></div><h3>清風湖</h3><span>ケーブルカーとモノレール</span></div>
+<div class="place"><div class="ph"><img alt="義林池龍湫滝とガラス展望台" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1603852452515-2dc92bd9c6f1?auto=format&amp;fit=crop&amp;w=800&amp;q=80'" src="../images/uirimji.jpg"/></div><h3>義林池</h3><span>三韓時代に築かれた貯水池</span></div>
 <div class="place"><div class="ph"><img alt="秋の清風湖に架かる玉筍峰つり橋" loading="lazy" src="../images/oksunbong.jpg"/></div><h3>玉筍峰つり橋</h3><span>清風湖に架かる橋</span></div>
 <div class="place"><div class="ph"><img alt="月岳山の尾根から望む清風湖" loading="lazy" src="../images/woraksan.jpg"/></div><h3>月岳山</h3><span>尾根から望む清風湖</span></div>
 </div>
