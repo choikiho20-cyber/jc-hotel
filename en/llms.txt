@@ -159,6 +159,6 @@ The following are not operated. Older listings on booking sites may say otherwis
 ## Citation note
 
 The information in this document is provided directly by JC Hotel Jecheon.
-Korean-language version: https://choikiho20-cyber.github.io/jc-hotel/llms.txt
+Korean-language version: https://jchotel.co.kr/llms.txt
 
-An FAQ section is also published on the site: https://choikiho20-cyber.github.io/jc-hotel/en/#faq
+An FAQ section is also published on the site: https://jchotel.co.kr/en/#faq

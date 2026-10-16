@@ -36,4 +36,4 @@ Allow: /
 User-agent: *
 Disallow: /admin.html
 
-Sitemap: https://choikiho20-cyber.github.io/jc-hotel/sitemap.xml
+Sitemap: https://jchotel.co.kr/sitemap.xml

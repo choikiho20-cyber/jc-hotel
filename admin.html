@@ -454,7 +454,7 @@ async function savePosts(mutate,message){
 // 글이 바뀌면 sitemap도 같이 갱신한다 (수동 등록이 필요 없도록)
 async function syncSitemap(list){
   try{
-    const BASE='https://choikiho20-cyber.github.io/jc-hotel';
+    const BASE='https://jchotel.co.kr';
     const today=new Date().toISOString().slice(0,10);
     let xml=await getText('sitemap.xml');
     // 이전에 넣은 글 URL을 걷어내고 현재 글로 다시 채운다
