@@ -558,6 +558,15 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
   font-size:13px;font-weight:500;color:#fff;
 }
 @media(max-width:760px){.facshots{grid-template-columns:repeat(2,1fr)}}
+/* 시설 칸 안에서 여러 장 넘겨보기(카페테리아) — 객실 카드의 화살표 넘기기(.rm-photos)를 칸 크기에 맞춤 */
+.facshots .rm-media{position:absolute;inset:0;margin:0}
+.facshots .rm-photos{height:100%;aspect-ratio:auto;margin:0}
+.facshots .rm-photos img{transition:none}
+.facshots figure:hover .rm-photos img{transform:none}
+.facshots .rm-arw{width:32px;height:32px}
+.facshots .rm-arw svg{width:16px;height:16px}
+.facshots .rm-cnt{top:10px;bottom:auto}
+.facshots figcaption{z-index:2;pointer-events:none}
 /* 시설 카드 9장 = 3x3. auto-fit은 화면폭에 따라 4칸이 되어 빈 칸이 생기므로 칸 수를 고정한다 */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:44px}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
@@ -1146,7 +1155,7 @@ footer .brand{margin-bottom:20px}
     </div>
     <div class="facshots rise">
       <figure><img loading="lazy" src="../images/facility/meeting.jpg" alt="Meeting room with a long marble table"><figcaption>Meeting Room</figcaption></figure>
-      <figure><img style="object-position:50% 0" loading="lazy" src="../images/facility/cafe.jpg" alt="Tables and chairs in the first-floor cafeteria, with the CAFE jc sign"><figcaption>Cafeteria</figcaption></figure>
+      <figure><div class="rm-photos"><img style="object-position:50% 0" loading="lazy" src="../images/facility/cafe.jpg" alt="Tables and chairs in the first-floor cafeteria, with the CAFE jc sign"><img loading="lazy" src="../images/facility/cafe-2.jpg" alt="Café counter with espresso machine and CAFE jc sign on the first floor"><img loading="lazy" src="../images/facility/cafe-3.jpg" alt="Cafeteria with bench seating and tables"><img loading="lazy" src="../images/facility/cafe-4.jpg" alt="Cafeteria bench seats with a high partition"><img loading="lazy" src="../images/facility/cafe-5.jpg" alt="Cafeteria bar table with a flower arrangement"></div><figcaption>Cafeteria</figcaption></figure>
       <figure><img loading="lazy" src="../images/facility/laundry.jpg" alt="Laundry room with washer and dryer"><figcaption>Laundry</figcaption></figure>
       <figure><img loading="lazy" src="../images/facility/parking.jpg" alt="Hotel private parking lot"><figcaption>Private Parking</figcaption></figure>
     </div>

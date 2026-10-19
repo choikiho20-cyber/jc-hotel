@@ -552,6 +552,15 @@ section{padding:clamp(80px,11vw,150px) var(--pad)}
   font-size:13px;font-weight:500;color:#fff;
 }
 @media(max-width:760px){.facshots{grid-template-columns:repeat(2,1fr)}}
+/* 시설 칸 안에서 여러 장 넘겨보기(카페테리아) — 객실 카드의 화살표 넘기기(.rm-photos)를 칸 크기에 맞춤 */
+.facshots .rm-media{position:absolute;inset:0;margin:0}
+.facshots .rm-photos{height:100%;aspect-ratio:auto;margin:0}
+.facshots .rm-photos img{transition:none}
+.facshots figure:hover .rm-photos img{transform:none}
+.facshots .rm-arw{width:32px;height:32px}
+.facshots .rm-arw svg{width:16px;height:16px}
+.facshots .rm-cnt{top:10px;bottom:auto}
+.facshots figcaption{z-index:2;pointer-events:none}
 /* 시설 카드 9장 = 3x3. auto-fit은 화면폭에 따라 4칸이 되어 빈 칸이 생기므로 칸 수를 고정한다 */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:44px}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
@@ -1114,7 +1123,7 @@ footer .brand{margin-bottom:20px}
 </div>
 <div class="facshots rise">
 <figure><img alt="配长条大理石桌的会议室" loading="lazy" src="../images/facility/meeting.jpg"/><figcaption>会议室</figcaption></figure>
-<figure><img style="object-position:50% 0" alt="一楼餐厅的桌椅，可见CAFE jc标志" loading="lazy" src="../images/facility/cafe.jpg"/><figcaption>餐厅</figcaption></figure>
+<figure><div class="rm-photos"><img alt="一楼餐厅的桌椅，可见CAFE jc标志" loading="lazy" style="object-position:50% 0" src="../images/facility/cafe.jpg"/><img alt="一楼咖啡吧台，配有咖啡机和CAFE jc标志" loading="lazy" src="../images/facility/cafe-2.jpg"/><img alt="设有长椅座位和餐桌的餐厅" loading="lazy" src="../images/facility/cafe-3.jpg"/><img alt="带高隔板的餐厅长椅座位" loading="lazy" src="../images/facility/cafe-4.jpg"/><img alt="摆放插花的餐厅吧台" loading="lazy" src="../images/facility/cafe-5.jpg"/></div><figcaption>餐厅</figcaption></figure>
 <figure><img alt="配洗衣机与烘干机的洗衣房" loading="lazy" src="../images/facility/laundry.jpg"/><figcaption>洗衣房</figcaption></figure>
 <figure><img alt="酒店专用停车场" loading="lazy" src="../images/facility/parking.jpg"/><figcaption>专用停车场</figcaption></figure>
 </div>
