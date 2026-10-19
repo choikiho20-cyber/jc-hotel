@@ -37,3 +37,4 @@ User-agent: *
 Disallow: /admin.html
 
 Sitemap: https://jchotel.co.kr/sitemap.xml
+Sitemap: https://jchotel.co.kr/sitemap-lang.xml

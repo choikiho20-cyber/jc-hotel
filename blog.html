@@ -17,6 +17,7 @@
 
 <!-- 도메인 jchotel.co.kr 연결 (2026-10-16) -->
 <link rel="canonical" href="https://jchotel.co.kr/blog.html">
+<link rel="alternate" type="application/rss+xml" title="제천 JC호텔 블로그" href="feed.xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="제천 JC호텔">
 <meta property="og:title" content="블로그 — 제천 JC호텔">
@@ -112,12 +113,20 @@ const renderList = posts => {
   document.title = '블로그 — 제천 JC호텔 (제천관광호텔)';
   if (!posts.length) { list.innerHTML = '<li class="empty" style="border:0">준비 중입니다.</li>'; return; }
   list.innerHTML = posts.map(p => `
-    <li><a href="?id=${p.id}">
+    <li><a href="?id=${p.id}" data-id="${esc(p.id)}">
       <time datetime="${esc(p.date)}">${esc(p.date)}</time>
       <h2>${esc(p.title)}</h2>
       <p>${esc(p.summary || '')}</p>
       <div class="tags">${(p.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
     </a></li>`).join('');
+};
+
+// 글해줌이 만든 글 페이지(posts/번호.html)가 있으면 목록 링크를 그 주소로 바꾼다 (검색엔진이 글 주소를 바로 따라가게)
+const usePostPages = () => {
+  list.querySelectorAll('a[data-id]').forEach(a => {
+    const url = 'posts/' + encodeURIComponent(a.dataset.id) + '.html';
+    fetch(url, { method: 'HEAD' }).then(r => { if (r.ok) a.href = url; }).catch(() => {});
+  });
 };
 
 const renderPost = p => {
@@ -150,7 +159,11 @@ fetch('posts.json?' + Date.now())
     posts.sort((a, b) => String(b.date).localeCompare(String(a.date)));
     const id = new URLSearchParams(location.search).get('id');
     const post = id && posts.find(p => String(p.id) === id);
-    post ? renderPost(post) : renderList(posts);
+    if (!post) { renderList(posts); usePostPages(); return; }
+    // 글 페이지가 따로 있으면 그쪽으로 옮기고, 없으면(관리 화면에서 쓴 글) 여기서 그대로 보여준다
+    fetch('posts/' + encodeURIComponent(post.id) + '.html', { method: 'HEAD' })
+      .then(r => r.ok ? location.replace('posts/' + encodeURIComponent(post.id) + '.html') : renderPost(post))
+      .catch(() => renderPost(post));
   })
   .catch(() => { list.innerHTML = '<li class="empty" style="border:0">글을 불러오지 못했습니다.</li>'; });
 </script>
