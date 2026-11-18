@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>제천 JC호텔</title>
+    <link>https://jchotel.co.kr/</link>
+    <description>제천 JC호텔 블로그</description>
+    <language>ko</language>
+    <item>
+      <title>JC호텔 제천시내 호텔 - 위치·요금·조식 정보 총정리</title>
+      <link>https://jchotel.co.kr/posts/2.html</link>
+      <guid>https://jchotel.co.kr/posts/2.html</guid>
+      <pubDate>Wed, 18 Nov 2026 09:00:00 +0900</pubDate>
+      <description>제천시 명동에 위치한 JC호텔은 제천 예술의전당까지 도보 1분 거리의 도심형 호텔입니다.</description>
+    </item>
+    <item>
+      <title>제천 예술의전당 도보 1분 — JC호텔에서 걸어가는 길</title>
+      <link>https://jchotel.co.kr/posts/1.html</link>
+      <guid>https://jchotel.co.kr/posts/1.html</guid>
+      <pubDate>Mon, 07 Sep 2026 09:00:00 +0900</pubDate>
+      <description>제천 JC호텔에서 제천 예술의전당까지는 걸어서 1분입니다. 공연이나 영화제 일정으로 제천에 오실 때 숙소를 고르는 기준을 정리했습니다.</description>
+    </item>
+  </channel>
+</rss>
